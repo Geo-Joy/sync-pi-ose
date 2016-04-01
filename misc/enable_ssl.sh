@@ -1,8 +1,7 @@
 #!/bin/bash
 
 echo "Upgrading SYNC..."
-#curl -sL https://raw.github.com/***/master/misc/upgrade.sh | bash
-curl -sL https://raw.githubusercontent.com/TIGER-Innovations/sync-pi/master/misc/run_upgrade.sh | bash
+curl -sL https://raw.github.com/wireload/sync-ose/master/misc/upgrade.sh | bash
 
 echo "Installing Stunnel..."
 sudo apt-get -y -qq install stunnel4
@@ -18,16 +17,16 @@ sudo cp ~/sync/misc/sync.key /etc/ssl/
 sudo chown root:root /etc/ssl/sync*
 sudo chmod 600 /etc/ssl/sync*
 
-echo "Modify sync Server to only listen on localhost (and only allow SSL connections)..."
+echo "Modify SYNC Server to only listen on localhost (and only allow SSL connections)..."
 sed -e 's/^.*listen.*/listen = 127.0.0.1:8080/g' -i ~/.sync/sync.conf
 
-echo "Restarting sync Server..."
+echo "Restarting SYNC Server..."
 sudo supervisorctl restart sync
 
 echo "Starting Stunnel..."
 sudo /etc/init.d/stunnel4 restart
 
-echo "You should be all set. You should be able to access Sync's management interface at https://<your IP>"
+echo "You should be all set. You should be able to access SYNC's management interface at https://<your IP>"
 
 echo "NOTE: If you have the firewall enabled, make sure to open it up for HTTPS (port 443)."
 echo "Assuming you're running UFW, the command is:"

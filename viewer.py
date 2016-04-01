@@ -19,8 +19,8 @@ import db
 import assets_helper
 
 
-__author__ = "Publicize"
-__copyright__ = "Copyright 2016, Publicize"
+__author__ = "WireLoad Inc"
+__copyright__ = "Copyright 2012-2015, WireLoad Inc"
 __license__ = "Dual License: GPLv2 and Commercial License"
 
 
@@ -29,7 +29,7 @@ EMPTY_PL_DELAY = 5  # secs
 
 BLACK_PAGE = '/tmp/sync_html/black_page.html'
 WATCHDOG_PATH = '/tmp/sync.watchdog'
-sync_HTML = '/tmp/sync_html/'
+SYNC_HTML = '/tmp/sync_html/'
 LOAD_SCREEN = '/sync/loading.jpg'  # relative to $HOME
 UZBLRC = '/sync/misc/uzbl.rc'  # relative to $HOME
 INTRO = '/sync/intro-template.html'
@@ -224,7 +224,7 @@ def view_video(uri, duration):
 
 def check_update():
     """
-    Check if there is a later version of sync
+    Check if there is a later version of SYNC-OSE
     available. Only do this update once per day.
     Return True if up to date was written to disk,
     False if no update needed and None if unable to check.
@@ -242,8 +242,8 @@ def check_update():
 
     if last_update is None or last_update < (datetime.now() - timedelta(days=1)):
 
-        if not url_fails('http://stats.publicize.co.in.com'):
-            latest_sha = req_get('http://stats.publicize.co.in/latest')
+        if not url_fails('http://stats.syncapp.com'):
+            latest_sha = req_get('http://stats.syncapp.com/latest')
 
             if latest_sha.status_code == 200:
                 with open(sha_file, 'w') as f:
@@ -311,7 +311,7 @@ def setup():
     load_settings()
     db_conn = db.conn(settings['database'])
 
-    sh.mkdir(sync_HTML, p=True)
+    sh.mkdir(SYNC_HTML, p=True)
     html_templates.black_page(BLACK_PAGE)
 
 

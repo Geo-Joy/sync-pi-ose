@@ -3,7 +3,7 @@
 
   %head
     %meta(charset="utf-8")
-    %title sync OSE
+    %title SYNC OSE
 
     %link(href="/static/css/bootstrap.css", rel="stylesheet")
     %link(href="/static/css/sync.css", rel="stylesheet")
@@ -16,12 +16,12 @@
       .navbar-inner
         .container
           %a.brand(href="/")
-            %img(src='static/img/publicize_small_logo.png')
+            %img(src='static/img/sync_ose_logo.png')
 
           %ul.nav.pull-right
             - if not up_to_date:
               %li.update-available
-                %a(href="http://www.publicize.co.in/sync/#upgrade")
+                %a(href="http://www.syncapp.com/ose.html#upgrade")
                   %i.icon-circle-arrow-down.icon-white
                   Update Available
             %li
@@ -125,7 +125,6 @@
     #footer
       .container
         .copy
-          &copy; <strong>2012-2015.</strong> Publicize.
-        %a(id="publicze", href="http://publicize.co.in", target="_blank")
-          %img(src="/static/img/publicize-logo.png", alt="publicize")
-
+          &copy; <strong>2012-2016.</strong> WireLoad, Inc.
+        %a(id="wireload-logo", href="http://wireload.net/", target="_blank")
+          %img(src="/static/img/wireload-logo.png", alt="WireLoad")

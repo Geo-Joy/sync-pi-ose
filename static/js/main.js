@@ -1,5 +1,5 @@
 jQuery(function() {
-  sync.app = new sync.App({
+  SYNC.app = new SYNC.App({
     el: $('body')
   });
 });

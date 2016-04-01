@@ -41,8 +41,8 @@ requests_log.setLevel(logging.WARNING)
 logging.debug('Starting viewer.py')
 
 
-class SyncSettings(IterableUserDict):
-    """Sync OSE's Settings."""
+class SYNCSettings(IterableUserDict):
+    """SYNC OSE's Settings."""
 
     def __init__(self, *args, **kwargs):
         IterableUserDict.__init__(self, *args, **kwargs)
@@ -114,4 +114,4 @@ class SyncSettings(IterableUserDict):
     def get_listen_port(self):
         return self['listen'].split(':')[1]
 
-settings = SyncSettings()
+settings = SYNCSettings()

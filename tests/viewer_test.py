@@ -81,7 +81,7 @@ class TestBrowserClear(ViewerTestCase):
 class TestLoadBrowser(ViewerTestCase):
     def test_setup(self):
         self.u.setup()
-        ok_(os.path.isdir(self.u.SCREENLY_HTML))
+        ok_(os.path.isdir(self.u.SYNC_HTML))
 
     def load_browser(self):
         m_uzbl = mock.Mock(name='uzbl')

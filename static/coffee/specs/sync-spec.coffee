@@ -1,14 +1,14 @@
 
-describe "SYNC", ->
+describe "SYNC Open Source", ->
 
   it "should have a SYNC object at its root", ->
-    expect(sync).toBeDefined()
+    expect(SYNC).toBeDefined()
 
 
   describe "date_to", ->
 
     test_date = new Date(2014, 5, 6, 14, 20, 0, 0);
-    a_date = sync.date_to(test_date);
+    a_date = SYNC.date_to(test_date);
 
     it "should format date and time as 'MM/DD/YYYY hh:mm:ss A'", ->
       expect(a_date.string()).toBe '06/06/2014 02:20:00 PM'
@@ -24,12 +24,12 @@ describe "SYNC", ->
 
     describe "Asset model", ->
       it "should exist", ->
-        expect(sync.Asset).toBeDefined()
+        expect(SYNC.Asset).toBeDefined()
 
       start_date = new Date(2014, 4, 6, 14, 20, 0, 0);
       end_date = new Date();
       end_date.setMonth(end_date.getMonth() + 2)
-      asset = new sync.Asset({
+      asset = new SYNC.Asset({
         asset_id: 2
         duration: "8"
         end_date: end_date
@@ -37,7 +37,7 @@ describe "SYNC", ->
         mimetype: 'webpage'
         name: 'Test'
         start_date: start_date
-        uri: 'http://www.publicize.co.in'
+        uri: 'http://www.syncapp.com'
       })
 
       it "should be active if enabled and date is in range", ->
@@ -63,7 +63,7 @@ describe "SYNC", ->
           name: "Test 2"
           start_date: new Date(2011, 4, 6, 14, 20, 0, 0)
           end_date: new Date(2011, 4, 6, 14, 20, 0, 0)
-          uri: "http://www.publicize.co.in"
+          uri: "http://www.wireload.net"
         })
 
         asset.rollback()
@@ -71,7 +71,7 @@ describe "SYNC", ->
         expect(asset.get 'is_enabled').toBe true
         expect(asset.get 'name').toBe 'Test'
         expect(asset.get 'start_date').toBe start_date
-        expect(asset.get 'uri').toBe "http://www.publicize.co.in"
+        expect(asset.get 'uri').toBe "http://www.syncapp.com"
 
       it "should erase backup date after rollback", ->
         asset.set({
@@ -79,7 +79,7 @@ describe "SYNC", ->
           name: "Test 2"
           start_date: new Date(2011, 4, 6, 14, 20, 0, 0)
           end_date: new Date(2011, 4, 6, 14, 20, 0, 0)
-          uri: "http://www.publicize.co.in"
+          uri: "http://www.wireload.net"
         })
 
         asset.rollback()
@@ -87,40 +87,40 @@ describe "SYNC", ->
         expect(asset.get 'is_enabled').toBe false
         expect(asset.get 'name').toBe 'Test 2'
         expect(asset.get('start_date').toISOString()).toBe (new Date(2011, 4, 6, 14, 20, 0, 0)).toISOString()
-        expect(asset.get 'uri').toBe "http://www.publicize.co.in"
+        expect(asset.get 'uri').toBe "http://www.wireload.net"
 
 
   describe "Collections", ->
 
     describe "Assets", ->
       it "should exist", ->
-        expect(sync.Assets).toBeDefined()
+        expect(SYNC.Assets).toBeDefined()
 
       it "should use the Asset model", ->
-        assets = new sync.Assets()
-        expect(assets.model).toBe sync.Asset
+        assets = new SYNC.Assets()
+        expect(assets.model).toBe SYNC.Asset
 
       it "should keep play order of assets", ->
-        assets = new sync.Assets()
-        asset1 = new sync.Asset({
+        assets = new SYNC.Assets()
+        asset1 = new SYNC.Asset({
           asset_id: 1
           is_enabled: true
           name: 'AAA'
-          uri: 'http://www.publicize.co.in',
+          uri: 'http://www.syncapp.com',
           play_order: 2
         })
-        asset2 = new sync.Asset({
+        asset2 = new SYNC.Asset({
           asset_id: 2
           is_enabled: true
           name: 'BBB'
-          uri: 'http://www.publicize.co.in',
+          uri: 'http://www.syncapp.com',
           play_order: 1
         })
-        asset3 = new sync.Asset({
+        asset3 = new SYNC.Asset({
           asset_id: 3
           is_enabled: true
           name: 'CCC'
-          uri: 'http://www.publicize.co.in',
+          uri: 'http://www.syncapp.com',
           play_order: 0
         })
 
@@ -141,10 +141,10 @@ describe "SYNC", ->
   describe "Views", ->
 
     it "should have EditAssetView", ->
-      expect(sync.View.EditAssetView).toBeDefined()
+      expect(SYNC.View.EditAssetView).toBeDefined()
 
     it "should have AssetRowView", ->
-      expect(sync.View.AssetRowView).toBeDefined()
+      expect(SYNC.View.AssetRowView).toBeDefined()
 
     it "should have AssetsView", ->
-      expect(sync.View.AssetsView).toBeDefined()
+      expect(SYNC.View.AssetsView).toBeDefined()

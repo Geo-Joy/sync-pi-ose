@@ -154,9 +154,44 @@ def migrate_drop_filename():
             print 'Obsolete column (' + col + ') is not present'
 # ✂--------
 
+
+def ensure_conf():
+    """Ensure config file is in place"""
+    conf_file = os.path.join(os.getenv('HOME'), '.sync', 'sync.conf')
+    if not os.path.isfile(conf_file):
+        print "Copying in config file..."
+        example_conf = os.path.join(os.getenv('HOME'), 'sync', 'misc', 'sync.conf')
+        shutil.copy(example_conf, conf_file)
+
+
+def fix_supervisor():
+    incorrect_supervisor_symlink = '/etc/supervisor/conf.d/supervisor_sync.conf'
+    if os.path.isfile(incorrect_supervisor_symlink):
+        subprocess.call(['/usr/bin/sudo', 'rm', incorrect_supervisor_symlink])
+
+    # Updating symlink for supervisor
+    supervisor_symlink = '/etc/supervisor/conf.d/sync.conf'
+    old_target = '/home/pi/sync/misc/sync.conf'
+    new_target = '/home/pi/sync/misc/supervisor_sync.conf'
+
+    try:
+        supervisor_target = os.readlink(supervisor_symlink)
+        if supervisor_target == old_target:
+            subprocess.call(['/usr/bin/sudo', 'rm', supervisor_symlink])
+    except (OSError, IOError) as _:
+        pass
+
+    if not os.path.isfile(supervisor_symlink):
+        try:
+            subprocess.call(['/usr/bin/sudo', 'ln', '-s', new_target, supervisor_symlink])
+        except (OSError, IOError) as _:
+            print 'Failed to create symlink'
+
 if __name__ == '__main__':
     migrate_drop_filename()
     migrate_add_is_enabled_and_nocache()
     migrate_make_asset_id_primary_key()
     migrate_add_play_order()
+    ensure_conf()
+    fix_supervisor()
     print "Migration done."

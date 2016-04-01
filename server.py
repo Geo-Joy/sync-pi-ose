@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-__author__ = "PUBLICIZE dev team"
-__copyright__ = "Copyright 2016, Publicize"
+__author__ = "Viktor Petersson"
+__copyright__ = "Copyright 2012, WireLoad Inc"
 __license__ = "Dual License: GPLv2 and Commercial License"
-__version__ = "0.1.0"
-__email__ = "geo@publicize.co.in"
+__version__ = "0.1.4"
+__email__ = "vpetersson@wireload.net"
 
 from datetime import datetime, timedelta
 from functools import wraps
@@ -85,7 +85,7 @@ def is_up_to_date():
 
 
 def template(template_name, **context):
-    """Sync template response generator. Shares the
+    """SYNC template response generator. Shares the
     same function signature as Bottle's template() method
     but also injects some global context."""
 

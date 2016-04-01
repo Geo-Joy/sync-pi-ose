@@ -25,9 +25,9 @@ def validate_url(string):
     False
     >>> validate_url("http://")
     False
-    >>> validate_url("http://publicize.co.in/logo.png")
+    >>> validate_url("http://wireload.net/logo.png")
     True
-    >>> validate_url("https://publicize.co.in/logo.png")
+    >>> validate_url("https://wireload.net/logo.png")
     True
 
     """

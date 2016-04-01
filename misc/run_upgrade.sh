@@ -1,2 +1,2 @@
 #!/bin/bash
-sh install.sh
+curl -sL https://raw.github.com/wireload/sync-ose/master/misc/upgrade.sh | bash
