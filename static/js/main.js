@@ -1,5 +1,5 @@
 jQuery(function() {
-  Screenly.app = new Screenly.App({
+  sync.app = new sync.App({
     el: $('body')
   });
 });
