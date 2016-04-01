@@ -1,0 +1,38 @@
+- hosts: all
+  user: pi
+  vars:
+    sync_systemd_units:
+      - X.service
+      - matchbox.service
+      - sync-viewer.service
+      - sync-web.service
+
+  tasks:
+    - name: Ensure sync config dir exists
+      file: path=/home/pi/.sync state=directory
+
+    - name: Copy sync default config
+      copy: src=/home/pi/sync/misc/sync.conf dest=/home/pi/.sync/sync.conf force=no
+
+    - name: Install pip dependencies
+      become: yes
+      pip: requirements=/home/pi/sync/requirements.txt
+
+    - name: Create default assets database if not exists
+      copy: src=/home/pi/sync/misc/sync.db dest=/home/pi/.sync/sync.db force=no
+
+    - name: Run database migration
+      command: python /home/pi/sync/misc/migrate.py
+      register: migrate
+
+    - debug: msg="{{ migrate.stdout }}"
+
+    - name: Copy sync systemd units
+      become: yes
+      copy: src=/home/pi/sync/misc/systemd/{{ item }} dest=/etc/systemd/system/{{ item }}
+      with_items: "{{ sync_systemd_units }}"
+
+    - name: Enable sync systemd services
+      become: yes
+      command: systemctl enable {{ item }} chdir=/etc/systemd/system
+      with_items: "{{ sync_systemd_units }}"

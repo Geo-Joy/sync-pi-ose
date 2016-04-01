@@ -100,7 +100,6 @@
     __extends(Asset, _super);
 
     function Asset() {
-      this.old_name = __bind(this.old_name, this);
       this.rollback = __bind(this.rollback, this);
       this.backup = __bind(this.backup, this);
       this.active = __bind(this.active, this);
@@ -147,12 +146,6 @@
       if (this.backup_attributes) {
         this.set(this.backup_attributes);
         return this.backup_attributes = void 0;
-      }
-    };
-
-    Asset.prototype.old_name = function() {
-      if (this.backup_attributes) {
-        return this.backup_attributes.name;
       }
     };
 
@@ -339,13 +332,7 @@
         });
       } else {
         if (!this.model.get('name')) {
-          if (this.model.old_name()) {
-            this.model.set({
-              name: this.model.old_name()
-            }, {
-              silent: true
-            });
-          } else if (get_mimetype(this.model.get('uri'))) {
+          if (get_mimetype(this.model.get('uri'))) {
             this.model.set({
               name: get_filename(this.model.get('uri'))
             }, {
