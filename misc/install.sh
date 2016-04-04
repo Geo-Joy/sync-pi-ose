@@ -21,7 +21,7 @@ ansible-playbook sync.yml
 
 mkdir /home/pi/rpi3-wifi-setup
 echo "Moving to /home/pi/rpi3-wifi-setup..."
-cd /home/pi/rpi3-wifi-setup
+cd /home/pi
 
 echo "Downloading rpi3-wifi-setup..."
 git clone http://github.com/tonypius/rpi3-wifi-setup.git
