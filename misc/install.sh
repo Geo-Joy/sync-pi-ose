@@ -19,7 +19,7 @@ ansible-playbook system.yml
 ansible-playbook sync.yml
 
 echo "Downloading rpi3-wifi-setup..."
-git -a "repo=git://github.com/tonypius/rpi3-wifi-setup.git dest=/home/pi/rpi3-wifi-setup"
+ansible localhost -m git -a "repo=git://github.com/tonypius/rpi3-wifi-setup.git dest=/home/pi/rpi3-wifi-setup"
 
 echo "Moving to /home/pi/rpi3-wifi-setup..."
 cd /home/pi/rpi3-wifi-setup
