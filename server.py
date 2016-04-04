@@ -1,12 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-__author__ = "Viktor Petersson"
-__copyright__ = "Copyright 2012, WireLoad Inc"
-__license__ = "Dual License: GPLv2 and Commercial License"
-__version__ = "0.1.4"
-__email__ = "vpetersson@wireload.net"
-
 from datetime import datetime, timedelta
 from functools import wraps
 from hurry.filesize import size

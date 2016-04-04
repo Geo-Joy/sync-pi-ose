@@ -24,7 +24,7 @@ __copyright__ = "Copyright 2012-2015, WireLoad Inc"
 __license__ = "Dual License: GPLv2 and Commercial License"
 
 
-SPLASH_DELAY = 60  # secs
+SPLASH_DELAY = 8  # secs
 EMPTY_PL_DELAY = 5  # secs
 
 BLACK_PAGE = '/tmp/sync_html/black_page.html'
@@ -37,7 +37,7 @@ INTRO = '/sync/intro-template.html'
 current_browser_url = None
 browser = None
 
-VIDEO_TIMEOUT = 20  # secs
+VIDEO_TIMEOUT = 3  # secs
 
 HOME = None
 arch = None

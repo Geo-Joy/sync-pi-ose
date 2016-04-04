@@ -14,15 +14,15 @@ DEFAULTS = {
         'database': CONFIG_DIR + 'sync.db',
         'listen': '0.0.0.0:8080',
         'assetdir': 'sync_assets',
-        'use_24_hour_clock': False
+        'use_24_hour_clock': True
     },
     'viewer': {
         'show_splash': True,
         'audio_output': 'hdmi',
         'shuffle_playlist': False,
         'resolution': '1920x1080',
-        'default_duration': '10',
-        'debug_logging': False,
+        'default_duration': '8',
+        'debug_logging': True,
         'verify_ssl': True,
     }
 }
