@@ -24,5 +24,5 @@ git -a "repo=git://github.com/tonypius/rpi3-wifi-setup.git dest=/home/pi/rpi3-wi
 echo "Moving to /home/pi/rpi3-wifi-setup..."
 cd /home/pi/rpi3-wifi-setup
 
-echo "Configiring wifi-ap & boot resolution config..."
+echo "Configuring wifi-ap & boot resolution ..."
 ./install.sh
