@@ -20,6 +20,12 @@
 
     - name: Create default assets database if not exists
       copy: src=/home/pi/sync/misc/sync.db dest=/home/pi/.sync/sync.db force=no
+	  
+    - name: moving timekeep.db
+      copy: src=/home/pi/sync/misc/timekeeper.db dest=/home/pi/.sync/timekeeper.db force=no
+	  
+    - name: moving onoff.py to /etc/init.d/
+      copy: src=/home/pi/sync/misc/onoff.py dest=/etc/init.d/onoff.py force=no  
 
     - name: Run database migration
       command: python /home/pi/sync/misc/migrate.py
