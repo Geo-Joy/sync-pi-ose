@@ -132,6 +132,7 @@ if __name__ == "__main__":
 		#call main only once from here
 		print(mUUID)
 		global ONtime
+		ONtime = ''
 		ONtime = getTime()
         	main(mUUID, ONtime)
     except:
